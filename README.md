@@ -106,6 +106,13 @@ Integer.parseInt("500") // 500 ale jako int
 Double.parseDouble("500.244") // 500.244 jako double
 ```
 
+Czasami dane mogą zawierać ułamek z przecinkiem więc musimy to przekształcić przed parsowaniem: 
+
+```java
+String someData = "200,4";
+Double.parseDouble(someData.replace(",", ".")); // 200.4 jako double
+```
+
 ### Parsowanie daty
 
 ```java
