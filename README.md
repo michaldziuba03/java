@@ -364,7 +364,9 @@ public class DiseasesDescriptions {
 
 ### HashSet
 
-Struktura działa podobnie do listy ale zawsze przechowuje unikalne elementy. Czyli nie ważne ile razy wykonamy `.add()` z tym samym elementem, to nigdy nie będziemy mieli duplikatów.
+Struktura działa podobnie do listy ale zawsze przechowuje unikalne elementy. Czyli nie ważne ile razy wykonamy `.add()` z tym samym elementem, to nigdy nie będziemy mieli duplikatów. 
+
+> Uwaga - kolejność elementów w trakcie iteracji po hash secie nie jest gwarantowana.
 
 ```java
 import java.util.HashSet;
@@ -391,5 +393,5 @@ public class Main {
         }
     }
 }
-
 ```
+
