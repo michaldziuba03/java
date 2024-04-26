@@ -15,6 +15,7 @@
 - [Sortowanie typów prostych w liście (np. integery)](#sortowanie-typów-prostych-w-liście-np-integery)
 - [Sortowanie obiektów w liście](#sortowanie-obiektów-w-liście)
 - [Zapisywanie do pliku / pisanie do pliku](#zapisywanie-do-pliku--pisanie-do-pliku)
+- [Operacje na folderach](#operacje-na-folderach)
 
 - [Struktury danych](#struktury-danych)
     - [Lista (dynamiczna tablica)](#lista-dynamiczna-tablica)
@@ -292,6 +293,38 @@ public class SaveFile {
         writer.write("</body>");
 
         writer.close(); // WAŻNE: jak zapomnimy zamknąć bufora to nie zobaczymy nic w pliku
+    }
+}
+```
+
+### Operacje na folderach
+
+Powiedzmy, że mam taki folder i chcę wyświetlić tylko pliki .txt:
+
+![image](https://github.com/michaldziuba03/java/assets/43048524/20803306-002d-42fa-bc27-176dd430eb6c)
+
+
+```java
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        Path dirPath = Paths.get("mydir");
+
+        Files.isDirectory(dirPath); // true
+
+        // przeszukiwanie folderu:
+        Files.find(dirPath, 1, (path, __) -> {
+            return path.toString().endsWith(".txt");
+        }).forEach((path) -> System.out.println(path.getFileName()));
+
+        /* OUTPUT:
+            file1.txt
+            file2.txt
+        */
     }
 }
 ```
