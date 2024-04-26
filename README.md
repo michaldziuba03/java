@@ -35,6 +35,17 @@ text.toLowerCase(); // "hello world"
 // 3. toUpperCase
 String text = "hello world";
 text.toUpperCase() // "HELLO WORLD"
+
+// 4. replace
+String text = "21,37";
+text.replace(",", ".") // "21.37"
+
+String text = "cat cat cat";
+text.replace("cat", "dog"); // "dog dog dog"
+
+// 5. replaceFirst
+String text = "cat cat cat";
+text.replaceFirst("cat", "dog"); // "dog cat cat"
 ```
 
 > Uwaga - powyższe metody zwracają NOWEGO stringa bez modyfikacji oryginalnego.
