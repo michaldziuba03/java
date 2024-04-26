@@ -16,6 +16,7 @@
 - [Sortowanie obiektów w liście](#sortowanie-obiektów-w-liście)
 - [Zapisywanie do pliku / pisanie do pliku](#zapisywanie-do-pliku--pisanie-do-pliku)
 - [Operacje na folderach](#operacje-na-folderach)
+    - [Odczyt po zagnieżdżonych folderach](#odczyt-po-zagnieżdżonych-folderach)
 
 - [Struktury danych](#struktury-danych)
     - [Lista (dynamiczna tablica)](#lista-dynamiczna-tablica)
@@ -317,16 +318,36 @@ public class Main {
         Files.isDirectory(dirPath); // true
 
         // przeszukiwanie folderu:
+        // maxDepth = 1 - czyli przeszukuje 2 poziomy zagnieżdżenia folderów
         Files.find(dirPath, 1, (path, __) -> {
-            return path.getFileName().toString().endsWith(".txt");
+            return path.getFileName().toString().endsWith(".txt") && Files.isRegularFile(path);
         }).forEach((path) -> System.out.println(path.getFileName()));
-
+        
         /* OUTPUT:
             file1.txt
             file2.txt
         */
     }
 }
+```
+
+#### Odczyt po zagnieżdżonych folderach
+
+![image](https://github.com/michaldziuba03/java/assets/43048524/786fffe1-7e18-45bc-9757-1621021ae523)
+
+
+```java
+Path dirPath = Paths.get("mydir");
+
+// maxDepth = 2 - czyli przeszukuje 2 poziomy zagnieżdżenia folderów
+Files.find(dirPath, 2, (path, __) -> {
+    return path.getFileName().toString().endsWith(".txt") && Files.isRegularFile(path);
+}).forEach((path) -> System.out.println(path.getFileName()));
+/* OUTPUT:
+    file1.txt
+    file2.txt
+    file3.txt
+*/
 ```
 
 ## Struktury danych
