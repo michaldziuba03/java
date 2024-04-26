@@ -368,6 +368,8 @@ Struktura działa podobnie do listy ale zawsze przechowuje unikalne elementy. Cz
 
 > Uwaga - kolejność elementów w trakcie iteracji po hash secie nie jest gwarantowana.
 
+> Uwaga - nie da sie pobrać elementów z hash setu po indexie - jeżeli nam zależy na operowaniu na indexach to możemy utworzyć tablicę na bazie hash setu (pokazane w następnym przykładzie).
+
 ```java
 import java.util.HashSet;
 
@@ -395,3 +397,20 @@ public class Main {
 }
 ```
 
+#### Utworzenie listy na bazie hash setu
+
+HashSet może być przydatny gdy kolekcjonujemy dane które muszą być unikalne i nie zależy nam na kolejności. Możemy utworzyć tablicę na podstawie hash setu by potem już operować jak na zwykłej liście. 
+
+```java
+        Set<String> cars = new HashSet<>();
+        cars.add("Volvo");
+        cars.add("BMW");
+        cars.add("Ford");
+        cars.add("BMW"); // dodajemy drugi raz "BMW", ale to nie wpływa na dane w hash secie
+        cars.add("Mazda");
+        List<String> carsList = new ArrayList<>(cars);
+
+        for (String car : carsList) {
+            System.out.printf("Car: %s\n", car);
+        }
+```
