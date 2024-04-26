@@ -251,7 +251,7 @@ public class Sort {
     }
     public void objectSort() {
         // Używamy komparatora - musimy przekazać lambdę/referencje do metody która zwraca inta (dla .comparingInt)
-        // jeżeli chcemy posortować odwrotnie (najmniejszy -> największy)
+        // jeżeli chcemy posortować (najmniejszy -> największy)
         list.sort(Comparator.comparingInt(DeathStat::getCount));
 
         // jeżeli chcemy posortować odwrotnie (największy -> najmniejszy)
