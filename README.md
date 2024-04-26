@@ -9,6 +9,7 @@
     - [Substring](#substring)
     - [Zamiana Stringa na liczbę](#zamiana-stringa-na-liczbę)
 - [Parsowanie daty](#parsowanie-daty)
+- [Operacje na datach](#operacje-na-datach)
 - [Czytanie pliku po liniach](#czytanie-pliku-po-liniach)
 - [Czytanie kolumn lini / rozdzielanie stringa](#czytanie-kolumn-lini--rozdzielanie-stringa)
 - [Sortowanie typów prostych w liście (np. integery)](#sortowanie-typów-prostych-w-liście-np-integery)
@@ -109,6 +110,21 @@ public class DateUtils {
         return formatter.format(date);
     }
 }
+```
+### Operacje na datach
+
+```java
+DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+LocalDate otherDate = LocalDate.parse("10-04-2010", formatter);
+LocalDate today = LocalDate.now(); // pobranie dzisiejszej daty
+
+// porównywanie dat:
+today.isAfter(otherDate); // true
+today.isBefore(otherDate); // true
+
+// przykładowe obliczenie różnicy lat
+int diff = today.getYear() - otherDate.getYear();
+System.out.printf("Jest %d lat różnicy\n", diff); // "Jest 14 lat różnicy"
 ```
 
 ### Czytanie pliku po liniach
