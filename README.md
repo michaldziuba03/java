@@ -115,16 +115,20 @@ public class DateUtils {
 
 ```java
 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-LocalDate otherDate = LocalDate.parse("10-04-2010", formatter);
-LocalDate today = LocalDate.now(); // pobranie dzisiejszej daty
+LocalDate otherDate = LocalDate.parse("10-07-2010", formatter);
+LocalDate today = LocalDate.now(); // 2024-04-26 (pobranie dzisiejszej daty)
 
 // porównywanie dat:
 today.isAfter(otherDate); // true
-today.isBefore(otherDate); // true
+today.isBefore(otherDate); // false
 
-// przykładowe obliczenie różnicy lat
+// naiwne obliczenie różnicy lat
 int diff = today.getYear() - otherDate.getYear();
 System.out.printf("Jest %d lat różnicy\n", diff); // "Jest 14 lat różnicy"
+
+// dokładniejsze obliczenie różnicy lat
+int diff2 =  Period.between(otherDate, today).getYears();
+System.out.printf("Jest %d lat różnicy\n", diff2); // "Jest 13 lat różnicy"
 ```
 
 ### Czytanie pliku po liniach
