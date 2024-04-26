@@ -318,7 +318,7 @@ public class Main {
         Files.isDirectory(dirPath); // true
 
         // przeszukiwanie folderu:
-        // maxDepth = 1 - czyli przeszukuje 2 poziomy zagnieżdżenia folderów
+        // maxDepth = 1 - czyli przeszukuje 1 poziom zagnieżdżenia folderów
         Files.find(dirPath, 1, (path, __) -> {
             return path.getFileName().toString().endsWith(".txt") && Files.isRegularFile(path);
         }).forEach((path) -> System.out.println(path.getFileName()));
