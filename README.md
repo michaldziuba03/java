@@ -10,6 +10,7 @@
     - [Zamiana Stringa na liczbę](#zamiana-stringa-na-liczbę)
 - [Parsowanie daty](#parsowanie-daty)
 - [Operacje na datach](#operacje-na-datach)
+- [Operacje na czasie (godziny, minuty, sekundy)](#operacje-na-czasie)
 - [Czytanie pliku po liniach](#czytanie-pliku-po-liniach)
 - [Czytanie kolumn lini / rozdzielanie stringa](#czytanie-kolumn-lini--rozdzielanie-stringa)
     - [Użycie .split()](#użycie-split)
@@ -151,6 +152,26 @@ System.out.printf("Jest %d lat różnicy\n", diff); // "Jest 14 lat różnicy"
 // dokładniejsze obliczenie różnicy lat
 int diff2 =  Period.between(otherDate, today).getYears();
 System.out.printf("Jest %d lat różnicy\n", diff2); // "Jest 13 lat różnicy"
+```
+
+### Operacje na czasie 
+
+```java
+LocalTime time = LocalTime.of(23, 2, 2); // 23:02:02
+
+DateTimeFormatter formatter =  DateTimeFormatter.ofPattern("HH:mm:ss"); // HH - oznacza 24h format
+DateTimeFormatter formatter12h = DateTimeFormatter.ofPattern("h:mm:ss a", Locale.ENGLISH); // hh - 12h format
+
+formatter.format(time); // "23:02:02"
+formatter12h.format(time); // "11:02:02 PM"
+
+LocalTime now = LocalTime.now(); // 21:33:51
+// formatowanie obecnego czasu
+formatter.format(now); // "21:33:51"
+
+now.isAfter(time); // false
+now.isBefore(time); // true
+}
 ```
 
 ### Czytanie pliku po liniach
