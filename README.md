@@ -171,7 +171,6 @@ formatter.format(now); // "21:33:51"
 
 now.isAfter(time); // false
 now.isBefore(time); // true
-}
 ```
 
 ### Czytanie pliku po liniach
