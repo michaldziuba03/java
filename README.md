@@ -194,6 +194,19 @@ public class ReadFile {
 }
 ```
 
+#### Przekształcanie, filtrowanie linijek
+
+Więcej przykładów: [Stream guide](https://stackify.com/streams-guide-java-8/)
+
+```java
+Path path = Paths.get(filename);
+Stream<String> lines =  Files.lines(path);
+
+lines.skip(100) // jeżeli chcemy pominać 100 linijek
+    .map(String::toLowerCase) // jeżeli chcemy każdą pojedynczą linię przekształcić
+    .filter(line -> line.startsWith("...")) // filtrowanie linijek po zawartości
+```
+
 ### Czytanie kolumn lini / rozdzielanie stringa
 
 ```java
