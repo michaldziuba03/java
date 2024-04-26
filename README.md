@@ -318,7 +318,7 @@ public class Main {
 
         // przeszukiwanie folderu:
         Files.find(dirPath, 1, (path, __) -> {
-            return path.toString().endsWith(".txt");
+            return path.getFileName().toString().endsWith(".txt");
         }).forEach((path) -> System.out.println(path.getFileName()));
 
         /* OUTPUT:
