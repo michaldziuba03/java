@@ -74,6 +74,7 @@ String text = "Hello World";
 text.startsWith("Hello"); // true
 text.endsWith("World"); // true
 text.contains("llo"); // true
+text.isEmpty(); // false
 ```
 
 #### Formatowanie stringów
