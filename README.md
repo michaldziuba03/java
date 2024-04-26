@@ -12,6 +12,7 @@
 - [Operacje na datach](#operacje-na-datach)
 - [Czytanie pliku po liniach](#czytanie-pliku-po-liniach)
 - [Czytanie kolumn lini / rozdzielanie stringa](#czytanie-kolumn-lini--rozdzielanie-stringa)
+    - [Użycie .split()](#użycie-split)
 - [Sortowanie typów prostych w liście (np. integery)](#sortowanie-typów-prostych-w-liście-np-integery)
 - [Sortowanie obiektów w liście](#sortowanie-obiektów-w-liście)
 - [Zapisywanie do pliku / pisanie do pliku](#zapisywanie-do-pliku--pisanie-do-pliku)
@@ -202,6 +203,36 @@ public class ReadColumns {
         }
     }
 }
+```
+#### użycie .split()
+
+```java
+String text = "Germany;Poland;Ukraine";
+String[] countries = text.split(";");
+
+System.out.println(countries[0]);
+System.out.println(countries[1]);
+System.out.println(countries[2]);
+```
+
+Sugeruję zawsze jeżeli to możliwe dać drugi parametr gdzie uwzględniamy limit elementów. 
+
+```java
+// UWAGA - Pułapka
+String text = "Germany;;";
+String[] countries = text.split(";");
+
+System.out.println(countries[0]);
+System.out.println(countries[1]); // ERROR
+System.out.println(countries[2]);
+
+// FIX:
+String text = "Germany;;";
+String[] countries = text.split(";", 3);
+
+System.out.println(countries[0]);
+System.out.println(countries[1]);
+System.out.println(countries[2]);
 ```
 
 ### Sortowanie typów prostych w liście (np. integery)
