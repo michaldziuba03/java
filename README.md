@@ -18,6 +18,7 @@
 - [Struktury danych](#struktury-danych)
     - [Lista (dynamiczna tablica)](#lista-dynamiczna-tablica)
     - [Hashmap](#hashmap--haszmapa)
+    - [HashSet](#hashset)
 
 ### Operacje na stringach
 
@@ -339,4 +340,36 @@ public class DiseasesDescriptions {
         return this.descriptions.get(diseaseName);
     }
 }
+```
+
+### HashSet
+
+Struktura działa podobnie do listy ale zawsze przechowuje unikalne elementy. Czyli nie ważne ile razy wykonamy `.add()` z tym samym elementem, to nigdy nie będziemy mieli duplikatów.
+
+```java
+import java.util.HashSet;
+
+public class Main {
+    public static void main(String[] args) {
+        HashSet<String> cars = new HashSet<String>();
+        cars.add("Volvo");
+        cars.add("BMW");
+        cars.add("Ford");
+        cars.add("BMW"); // dodajemy drugi raz "BMW", ale to nie wpływa na dane w hash secie
+        cars.add("Mazda");
+
+        System.out.println(cars); // [Volvo, Mazda, Ford, BMW]
+
+        cars.contains("Mazda"); // true
+        cars.remove("Volvo"); // [Mazda, Ford, BMW]
+
+        cars.clear(); // czyści cały hash set
+
+        // iteracja po elementach
+        for (String car : cars) {
+            System.out.println(car);
+        }
+    }
+}
+
 ```
