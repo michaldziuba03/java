@@ -45,3 +45,48 @@ public class MyRunnable implements Runnable {
     }
 }
 ```
+
+### Pula wątków
+
+Tworzenie jak najwięcej wątków nie jest najlepszym pomysłem ponieważ zajedziemy procesor przełączaniem kontekstu i nie zyskamy tak naprawdę korzyści z wielowątkowości.
+Najbardziej optymalna liczba wątków w puli to ilość dostępnych procesorów w kompie, bo wtedy faktycznie wiele zadań może zostać wykonanych równolegle na każdym CPU.
+
+`awaitTermination` zatrzymuje główny wątek (blokuje go) i sprawia, że czeka aż wszystkie zadania z puli zostaną zakończone.
+
+```java
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+
+class MyTask implements Runnable {
+    @Override
+    public void run() {
+        System.out.println("Wątek " + Thread.currentThread().getId() + " jest używany.");
+    }
+}
+
+public class MySample {
+    public static void main(String[] args) {
+        int cpus = Runtime.getRuntime().availableProcessors();
+        ExecutorService executor = Executors.newFixedThreadPool(cpus);
+
+        for (int i = 0; i < 10; i++) {
+            MyTask task = new MyTask(); // Runnable class
+            executor.execute(task);
+        }
+
+        executor.shutdown();
+        try {
+            executor.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
+        } catch (InterruptedException err) {
+            err.printStackTrace();
+        }
+    }
+}
+```
+
+Output z pulą wątków o rozmiarze 2:
+
+![image](https://github.com/michaldziuba03/java/assets/43048524/9e853706-6bd3-45ee-961a-0671f2f812c9)
+
+> Zauważ, że po zakończeniu zadania, wątek jest używany ponownie
