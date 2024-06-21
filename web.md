@@ -118,3 +118,24 @@ public class UserController {
 ```
 
 Domyślnie Spring odpala aplikacje na porcie `8080`, więc wbijamy na `http://localhost:8080` + ścieżka z poziomu przeglądarki.
+
+## Dynamiczne ścieżki
+
+```java
+package web;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class UserController {
+    @GetMapping("/{name}")
+    String hello(@PathVariable("name") String name) {
+        return "Hello, " + name;
+    }
+}
+```
+
+![image](https://github.com/michaldziuba03/java/assets/43048524/9365ea21-b5a5-4b18-b2cd-4d88ab17f698)
+
