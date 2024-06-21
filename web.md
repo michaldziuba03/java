@@ -139,3 +139,69 @@ public class UserController {
 
 ![image](https://github.com/michaldziuba03/java/assets/43048524/9365ea21-b5a5-4b18-b2cd-4d88ab17f698)
 
+## Metody HTTP z ciałem (POST, PUT itd)
+
+Mam klasę która reprezentuje formularz rejestracji.
+
+BARDZO WAŻNE - klasa musi mieć gettery i settery bo inaczej Spring nie będzie w stanie przemapować JSONa na naszą klasę: 
+
+```java
+package web;
+
+public class RegisterDto {
+    String email;
+    String password;
+
+    public boolean validate() {
+        if (email == null || password == null) {
+            return false;
+        }
+
+        if (email.length() < 2) {
+            return false;
+        }
+
+        return password.length() >= 8;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+}
+```
+
+Przykład kontrolera z metodą `@PostMapping` która używa z `@RequestBody`.
+
+> jako bonus też dałem wyrzucanie wbudowanych w Springa wyjątków które zwracają odpowiedni status HTTP (Bad Request - 400).
+
+```java
+package web;
+
+import org.apache.coyote.BadRequestException;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+public class UserController {
+    @PostMapping("/register")
+    RegisterDto register(@RequestBody RegisterDto body) throws BadRequestException {
+        System.out.println(body);
+        if (!body.validate()) {
+            throw new BadRequestException("Email or password too short");
+        }
+
+        return body;
+    }
+}
+```
