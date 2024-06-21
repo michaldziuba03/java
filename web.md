@@ -206,6 +206,14 @@ public class UserController {
 }
 ```
 
+By wytestować `/register` możemy użyć cURL na Linuxie:
+
+```sh
+curl -X POST http://localhost:8080/register \
+     -H "Content-Type: application/json" \
+     -d '{"password": "your_password_here", "email": "your_email_here"}'
+``` 
+
 ## Metody GET i query paramsy
 
 Query paramsy to parametry po znaku zapytania np. /sciezka?parameter1=10&parameter2=3
