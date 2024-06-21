@@ -67,6 +67,7 @@ public class UserRepository {
 
     void init() throws SQLException {
         Statement statement = conn.createStatement();
+        // bezpieczne do odpalania wiele razy, bo użyłem IF NOT EXISTS podczas tworzenia tabeli
         statement.executeUpdate(
                 "CREATE TABLE IF NOT EXISTS users (" +
                         "id INTEGER PRIMARY KEY," +
@@ -113,6 +114,26 @@ public class UserRepository {
         PreparedStatement statement = conn.prepareStatement(query);
         statement.setInt(1, id);
         statement.executeUpdate();
+    }
+}
+```
+
+### Main
+
+```java
+package org.example;
+
+import java.sql.SQLException;
+
+public class Main {
+    public static void main(String[] args) throws SQLException {
+        SQLConnection db = new SQLConnection();
+        db.connect("sample.db");
+
+        UserRepository userRepository = new UserRepository(db);
+
+        userRepository.init();
+        userRepository.create("michaldziuba03", "topsecret");
     }
 }
 ```
