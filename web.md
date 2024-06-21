@@ -205,3 +205,29 @@ public class UserController {
     }
 }
 ```
+
+## Metody GET i query paramsy
+
+Query paramsy to parametry po znaku zapytania np. /sciezka?parameter1=10&parameter2=3
+
+Kolejny sposób na przekazywanie parametrów.
+
+```java
+package web;
+
+import org.apache.coyote.BadRequestException;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+public class UserController {
+    @GetMapping("/search")
+    public String search(
+            @RequestParam("query") String query,
+            @RequestParam(name = "limit", required = false, defaultValue = "10") int limit) {
+        return String.format("Searching for: %s with limit %d", query, limit);
+    }
+}
+```
+
+![image](https://github.com/michaldziuba03/java/assets/43048524/a6bfa96e-c53c-4b51-af50-e0d6979c357d)
+
