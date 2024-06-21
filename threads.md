@@ -46,6 +46,45 @@ public class MyRunnable implements Runnable {
 }
 ```
 
+## Podział zadania na wątki
+```java
+import java.util.Arrays;
+
+class Worker implements Runnable {
+    private final int[] array;
+    private final int startIndex;
+    private final int endIndex;
+    public Worker(int[] array, int startIndex, int endIndex) {
+        this.array = array;
+        this.startIndex = startIndex;
+        this.endIndex = endIndex;
+    }
+    @Override
+    public void run() {
+        for (int i = startIndex; i < endIndex; i++)
+            array[i]++;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) throws InterruptedException {
+        int numThreads = 3;
+        int[] ints = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+        Thread[] threads = new Thread[numThreads];
+        int chunkSize = ints.length / numThreads;
+        for (int i = 0; i < numThreads; i++) {
+            int startIndex = i * chunkSize;
+            int endIndex = (i == numThreads - 1) ? ints.length : (i + 1) * chunkSize;
+            threads[i] = new Thread(new Worker(ints, startIndex, endIndex));
+            threads[i].start();
+        }
+        for (Thread thread : threads) thread.join();
+        Arrays.stream(ints).forEach(System.out::print);
+
+    }
+}
+```
+
 ## Pula wątków
 
 Tworzenie jak najwięcej wątków nie jest najlepszym pomysłem ponieważ zajedziemy procesor przełączaniem kontekstu i nie zyskamy tak naprawdę korzyści z wielowątkowości.
