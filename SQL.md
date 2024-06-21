@@ -1,5 +1,18 @@
 ## Typowe interakcje z bazą danych SQLite w Javie
 
+### Dodanie zależności z repo Mavena
+
+Dodajmy najpierw drivera [SQLite JDBC](https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc) do samej obsługi bazy danych.
+
+```xml
+<!-- https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc -->
+<dependency>
+    <groupId>org.xerial</groupId>
+    <artifactId>sqlite-jdbc</artifactId>
+    <version>3.41.2.1</version>
+</dependency>
+```
+
 ### Stworzenie wrappera na połączenia
 
 > SQLConnection.java
