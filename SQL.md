@@ -131,9 +131,14 @@ public class Main {
         db.connect("sample.db");
 
         UserRepository userRepository = new UserRepository(db);
-
         userRepository.init();
-        userRepository.create("michaldziuba03", "topsecret");
+
+        int createdId = userRepository.create("michaldziuba03", "topsecret");
+
+        User user = userRepository.findById(createdId);
+        System.out.println(user.name());
+
+        userRepository.deleteById(createdId);
     }
 }
 ```
