@@ -19,8 +19,8 @@ Typy złożone zaś to wszelkie tablice, klasy zdefiniowane przez użytkownika. 
 
 | Właściwość                | Typ prosty                    | Typ złożony  (Obiekty)            |
 |---------------------------|-------------------------------|-----------------------------------|
-| **Przechowywanie w pamięci** | Stos                 | Sterta                            |
-| **Przekazywanie do metod** | Przez wartość  (jest kopiowane)  | Przez referencję                  |
+| **Przechowywanie w pamięci** | Stos    (stack)            | Sterta (heap)                     |
+| **Przekazywanie do metod** | Przez wartość  (jest kopiowane)  | Przez referencję  (referencja jest kopiowana ale nie wartość na którą wskazuje)   |
 | **Domyślna wartość**        | 0 (dla typów liczbowych),       | `null`                            |
 |                             | `false` (dla `boolean`),        |                                   |
 |                             | '\u0000' (dla `char`)           |                                   |
