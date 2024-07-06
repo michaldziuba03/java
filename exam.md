@@ -1,3 +1,6 @@
+
+# Podstawy Javy
+
 ## Typy proste vs złożone (Obiekty)
 
 Typy proste w Java to:
@@ -10,7 +13,7 @@ Typy proste w Java to:
 - char
 - boolean
 
-Typy złożone zaś to wszelkie obiekty, tablice, klasy zdefiniowane przez użytkownika. Wbudowany String również jest typem złożonym.
+Typy złożone zaś to wszelkie tablice, klasy zdefiniowane przez użytkownika. Wbudowany String również jest typem złożonym.
 
 ### Porównanie
 
