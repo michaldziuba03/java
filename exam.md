@@ -183,3 +183,12 @@ public class Main {
     }
 }
 ```
+
+Zalety:
+- Możesz konstruować obiekty etapami, odkładać niektóre etapy, lub wykonywać je rekursywnie.
+- Możesz wykorzystać ponownie ten sam kod konstrukcyjny budując kolejne reprezentacje produktów.
+- Zasada pojedynczej odpowiedzialności. Można odizolować skomplikowany kod konstrukcyjny od logiki biznesowej produktu.
+
+Wady:
+- Kod staje się bardziej skomplikowany, gdyż wdrożenie tego wzorca wiąże się z dodaniem wielu nowych klas.
+
