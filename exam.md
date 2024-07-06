@@ -210,3 +210,47 @@ Znane implementacje interfejsu `Collection`
 - Zbiory: HashSet, TreeSet itp. Reprezentują nieuporządkowaną kolekcję unikalnych elementów.
 - Kolejki: ArrayDeque, PriorityQueue itp. Służą do przechowywania elementów w kolejności, w której mają być przetwarzane.
 
+## Porównaj klasy LinkedList i ArrayList.
+
+Obie klasy implementują interfejs `List<T>` z biblioteki Java collections.
+
+ArrayList jest implementacją dynamicznej tablicy.
+
++ operacja dodawania na sam koniec tablicy jest szybka O(1) ale czasem następuje realokacja tablicy gdy ilość elementów jest równa pojemności - wiąże sie to z przekopiowaniem starej tablicy do nowej O(n).
++ random access / losowy dostęp - możemy uzyskać element po indeksie szybko w O(1)
++ elementy tablicy są trzymane w jednym ciągłym bloku pamięci
+
+> Przykład w C, by dobrze zwizualizować co sie dzieje w pamięci:
+
+```c
+struct vector {
+    size_t capacity; // pojemność, czyli ile miejsca zostało zaalokowane na tablice
+    size_t size; // faktyczna ilość elementów w tablicy items
+    int *items;
+};
+
+// jeżeli size == capacity, następuje realokacja tablicy, co wiąże sie często z przekopiowaniem wszystkich elementów więc jest to operacja O(n)
+```
+
+LinkedList jest implementacją powiązanej listy (można też spotkać tłumaczenie jako połączona lista, wiązana lista).
+
++ operacja dodawania na sam koniec listy jest szybka i zawsze O(1)
++ brak losowego dostępu - żeby dostać sie do konkretnego indeksu, musimy do niego przeiterować "wędrując po wskaźnikach" (patrz na strukture poniżej).
++ fragmentacja - elementy listy są rozrzucone po różnych obszarach pamięci
+
+> Przykład w C, by dobrze zwizualizować co sie dzieje w pamięci:
+
+```c
+// powód dlaczego lista powiązana zajmuje więcej pamięci:
+// obok samej wartości, musimy także trzymać wskaźniki (8 bajtów) do poprzedniego i następnego elementu.
+struct node {
+    struct node *next;
+    struct node *prev;
+    int value;
+};
+
+struct list {
+    struct node *start;
+    struct node *end;
+};
+```
