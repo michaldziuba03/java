@@ -97,3 +97,89 @@ public class Main {
     }
 }
 ```
+
+# Wzorce projektowe
+
+## Builder
+
+Jest to jeden z wzorców kreacyjnych. Stosujemy go głównie w celu uniknięciu dużych i skomplikowanych konstruktorów klas.
+
+Powiedzmy, że mamy klasę która reprezentuje kanapkę:
+
+```java
+public class Sandwich {
+    private String bread;
+    private String meat;
+    private String cheese;
+    private String vegetables;
+
+    public Sandwich(String bread, String meat, String cheese, String vegetables) {
+        this.bread = bread;
+        this.meat = meat;
+        this.cheese = cheese;
+        this.vegetables = vegetables;
+    }
+
+    @Override
+    public String toString() {
+        return "Sandwich{" +
+                "bread='" + bread + '\'' +
+                ", meat='" + meat + '\'' +
+                ", cheese='" + cheese + '\'' +
+                ", vegetables='" + vegetables + '\'' +
+                '}';
+    }
+}
+```
+
+Klasa budowniczego która zawrze logikę tworzenia nowej klasy:
+
+```java
+public class SandwichBuilder {
+    private String bread;
+    private String meat;
+    private String cheese;
+    private String vegetables;
+
+    public SandwichBuilder setBread(String bread) {
+        this.bread = bread;
+        return this;
+    }
+
+    public SandwichBuilder setMeat(String meat) {
+        this.meat = meat;
+        return this;
+    }
+
+    public SandwichBuilder setCheese(String cheese) {
+        this.cheese = cheese;
+        return this;
+    }
+
+    public SandwichBuilder setVegetables(String vegetables) {
+        this.vegetables = vegetables;
+        return this;
+    }
+
+    public Sandwich build() {
+        return new Sandwich(bread, meat, cheese, vegetables);
+    }
+}
+```
+
+Użycie:
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        Sandwich mySandwich = new SandwichBuilder()
+                .setBread("Whole grain")
+                .setMeat("Turkey")
+                .setCheese("Cheddar")
+                .setVegetables("Lettuce, Tomato")
+                .build();
+
+        System.out.println(mySandwich);
+    }
+}
+```
