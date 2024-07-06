@@ -219,6 +219,8 @@ ArrayList jest implementacją dynamicznej tablicy.
 + operacja dodawania na sam koniec tablicy jest szybka O(1) ale czasem następuje realokacja tablicy gdy ilość elementów jest równa pojemności - wiąże sie to z przekopiowaniem starej tablicy do nowej O(n).
 + random access / losowy dostęp - możemy uzyskać element po indeksie szybko w O(1)
 + elementy tablicy są trzymane w jednym ciągłym bloku pamięci
++ jest bardziej optymalne pod względem pamięci
++ dodawanie / usuwanie elementów z środka jest bardziej kosztowne, ponieważ może wymagać przesunięcia elementów O(n)
 
 > Przykład w C, by dobrze zwizualizować co sie dzieje w pamięci:
 
@@ -235,8 +237,10 @@ struct vector {
 LinkedList jest implementacją powiązanej listy (można też spotkać tłumaczenie jako połączona lista, wiązana lista).
 
 + operacja dodawania na sam koniec listy jest szybka i zawsze O(1)
-+ brak losowego dostępu - żeby dostać sie do konkretnego indeksu, musimy do niego przeiterować "wędrując po wskaźnikach" (patrz na strukture poniżej).
++ brak losowego dostępu - żeby dostać sie do konkretnego indeksu, musimy do niego przeiterować "wędrując po wskaźnikach" (patrz na strukture poniżej)
 + fragmentacja - elementy listy są rozrzucone po różnych obszarach pamięci
++ zajmuje znacznie więcej pamięci (ponieważ oprócz wartości dla każdego elementu trzymamy także referencje do poprzedniego i następnego elementu)
++ dodawanie / usuwanie elementów z środka jest O(1), ponieważ po prostu podmieniamy wskaźniki i tyle. W praktyce jednak zazwyczaj musimy przeiterować do elementu który chcemy np. usunąć - wtedy to operacja O(n). 
 
 > Przykład w C, by dobrze zwizualizować co sie dzieje w pamięci:
 
