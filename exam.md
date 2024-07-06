@@ -258,3 +258,11 @@ struct list {
     struct node *end;
 };
 ```
+
+## W C++ jest typ std::multimap. Jak zrekonstruować jego działanie w Javie?
+
+`std::multimap` to struktura danych, która umożliwia przechowywanie wielu wartości dla pojedynczego klucza.  Nie istnieje wbudowany odpowiednik tej struktury w Javie ale możemy zrekonstruować jego zachowanie używając `Map<T>` + `List<T>`.
+
+ ```java
+Map<String, List<String>> multiMap = new HashMap<>();
+```
