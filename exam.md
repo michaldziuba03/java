@@ -55,9 +55,14 @@ W poniższym przykładzie tworzę 3 zmienne: String (obiekt), int (typ prosty) i
 
 Int jest kopiowany, więc w metodzie tworzona jest na stosie lokalna kopia, która potem jest modyfikowana ale oryginalna zmienna pozostaje bez zmian.
 
-Klasa `Person` jest przekazywana jako referencja/wskaźnik do metody, więc wszelkie zmiany będą widoczne również w oryginalnej zmiennej.
+Klasa `Person` jest przekazywana do metody jako referencja (tak naprawdę referencja jest kopiowana), więc wszelkie zmiany będą widoczne również w oryginalnej zmiennej.
 
 String jest również przekazywany jako referencja ale jest on zachowuje sie w specyficzny sposób - gdy modyfikujemy Stringa, tak naprawdę tworzymy nowego Stringa, ponieważ String jest niemutowalny. Wyobraź sobie, że gdy przekazujesz Stringa, to kopiowana jest jego referencja, potem ta kopia referencji jest nadpisywana i wskazuje na nowo utworzony String `"Michał"`. Z tego powodu oryginalna zmienna pozostaje bez zmian.
+
+*Ważne rzeczy do zrozumienia*:
+
+Trzymamy na stosie (stack) referencje do obiektu który trzymany jest na stercie (heap). Gdy przekazujemy obiekt do metody, to ta referencja trzymana na stosie jest kopiowana. W przypadku Stringa który jest niemutowalny,
+gdy przypisujemy do niego nową wartość to tworzony jest na stercie nowy obiekt i nasza kopia referencji wtedy wskazuje na ten nowy obiekt.
 
 ```java
 public class Main {
