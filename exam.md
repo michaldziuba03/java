@@ -192,3 +192,21 @@ Zalety:
 Wady:
 - Kod staje się bardziej skomplikowany, gdyż wdrożenie tego wzorca wiąże się z dodaniem wielu nowych klas.
 
+# Kolekcje
+
+## Omów interfejs `Collection`
+
+Iterfejs Collection reprezentuje zbior obiektów, znanych jako elementy kolekcji. Stanowi on bazę dla wielu innych interfejsów i klas kolekcji w Javie.
+
+Cechy:
+
+- Interfejs generyczny: Pozwala na określenie typu obiektów, które będą przechowywane w kolekcji, co zapewnia bezpieczeństwo typów.
+- Operacje podstawowe: Zapewnia metody do podstawowych operacji, takich jak dodawanie, usuwanie, sprawdzanie rozmiaru i sprawdzanie, czy kolekcja jest pusta.
+- Iteracja: Umożliwia iterację po elementach kolekcji za pomocą iteratora.
+
+Znane implementacje interfejsu `Collection`
+
+- Listy: ArrayList, LinkedList itp. Reprezentują uporządkowaną kolekcję, w której dopuszczalne są duplikaty.
+- Zbiory: HashSet, TreeSet itp. Reprezentują nieuporządkowaną kolekcję unikalnych elementów.
+- Kolejki: ArrayDeque, PriorityQueue itp. Służą do przechowywania elementów w kolejności, w której mają być przetwarzane.
+
